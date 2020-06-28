@@ -7,8 +7,8 @@
                 <div class="section">
                     <div class="section-head active">
                         <ul>                                   
-                            <li class="active"><a href="/individual">Individual Account </a></li>
-                            <li><a href="/corporate" > Corporate Account</a></li>
+                            <li class="{{ Route::currentRouteNamed('individual-reg') ? 'active' : '' }}"><a href="/individual-reg">Individual Account </a></li>
+                            <li class="{{ Route::currentRouteNamed('corporate-reg') ? 'active' : '' }}"><a href="/corporate-reg" > Corporate Account</a></li>
                         </ul>
                     </div>
                     <hr/>
@@ -179,6 +179,11 @@
                                                     style="color:red; font-size:25px; margin-bottom:-10px"
                                                     class="pull-right">*</span>
                                                 <input id="passwordV" name="passwordV" minlength="8" data-validation="required" data-validation-error-msg="Confirm Password is required" placeholder="Confirm Password " type="password" class="form-control" required="true" value=""/>
+                                            </div>
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-lg-12">
+                                                <button type="submit">Submit Now</button>
                                             </div>
                                         </div>
                                     </form>

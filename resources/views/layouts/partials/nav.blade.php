@@ -12,9 +12,9 @@
           <div class="tn-right">
             <div class="signer">
               <ul>                                   
-                  <li><a href="/login" class="fa fa-lock">  Login</a></li>
+                  <li class="{{ Route::currentRouteNamed('login') ? 'active' : '' }}"><a href="/login" class="fa fa-lock">  Login</a></li>
                     <label>|</label>
-                  <li><a href="/individual" class="fa fa-key" >  Sign Up</a></li>
+                  <li class="{{ Route::currentRouteNamed('') ? 'active' : '' }}"><a href="/individual-reg" class="fa fa-key" >  Sign Up</a></li>
               </ul>
             </div>
           </div>

@@ -9,8 +9,8 @@
                 <div class="section">
                     <div class="section-head active">
                         <ul>                                   
-                            <li><a href="/individualservices">Individual Transactions </a></li>
-                            <li class="active"><a href="/bulkservices" > Bulk Transactions</a></li>
+                            <li class="{{ Route::currentRouteNamed('transac-individual') ? 'active' : '' }}"><a href="/transac-individual">Individual Transactions </a></li>
+                            <li class="{{ Route::currentRouteNamed('transac-bulk') ? 'active' : '' }}"><a href="/transac-bulk" > Bulk Transactions</a></li>
                         </ul>
                     </div>
                     <hr/>
