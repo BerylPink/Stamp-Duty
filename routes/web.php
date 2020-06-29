@@ -29,9 +29,9 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('verification', function () {
-    return view('verification');
-})->name('verification');;
+// Route::get('verification', function () {
+//     return view('verification');
+// })->name('verification');;
 
 Route::get('/individual-reg', function () {
     return view('individual-reg');
@@ -41,14 +41,16 @@ Route::get('/corporate-reg', function () {
     return view('corporate-reg');
 })->name('corporate-reg');;
 
-Route::get('/transac-individual', function () {
-    return view('transac-individual');
-})->name('transac-individual');;
+// Route::get('/transac-individual', function () {
+//     return view('transac-individual');
+// })->name('transac-individual');;
 
-Route::get('/transac-bulk', function () {
-    return view('transac-bulk');
-})->name('transac-bulk');;
+Route::resource('/transac-individual',                'TransacIndividualController');
+
+
+Route::resource('/verification',                'VerificationController');
 
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
+

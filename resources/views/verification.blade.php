@@ -26,6 +26,43 @@
                 </div>
                 </div>
         </form>
+
+        @if($is_displayed == 1)
+
+        <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+            <div class="card-body">
+                <table id="basicExample" class="table table-bordered table-responsive">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>S/N</th>
+                        <th class="text-center">Ceritifcate Number</th>
+                        <th>Names of Parties</th>
+                        <th>Instrumennt Name</th>
+                        <th>Amount Paid (₦)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form>
+                    @foreach($verifications as $verification)
+                        <tr>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $verification->assess_no }}</td>
+                            <td>{{ $verification->payera_name. ' '.$admin->payerb_name  }}</td>
+                            <td>{{ $verification->tbl_duty_instruments_name }}</td>
+                            <td>{{ $verification->paid_amount }}</td>
+                        </tr>
+                    @endforeach
+                    </form>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+
     </div>
 
 @endsection
