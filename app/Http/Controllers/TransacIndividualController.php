@@ -17,10 +17,13 @@ class TransacIndividualController extends Controller
      */
     public function index()
     {
-        $transactions = DB::table('tbl_duty_instruments');
+        $transactions = TransacIndividual::select('name', 'rate_type', 'rate', 'extra_copy')
+        ->orderBy('name')->paginate(10);
 
         $data = compact('transactions');
-        return view('transac-individual', $data)->with('i');
+
+        return view('transac-individual', $data)
+        ->with('i', (request()->input('page', 1) -1)*10);  
     }
 
     /**

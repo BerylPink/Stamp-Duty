@@ -10,8 +10,7 @@ class Verification extends Model
 
     public $timestamps = false;
 
-
     protected $fillable = [
-        'assess_no ', 'payera_name', 'payerb_name', 'tbl_duty_instruments_name', 'paid_amount',
+        'assess_no ', 'payera_name', 'payerb_name', 'instrument_descrp', 'paid_amount',
     ];
 }

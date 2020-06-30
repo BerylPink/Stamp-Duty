@@ -10,7 +10,6 @@ class TransacIndividual extends Model
 
     public $timestamps = false;
 
-
     protected $fillable = [
         'name', 'rate_type', 'rate', 'extra_copy',
     ];

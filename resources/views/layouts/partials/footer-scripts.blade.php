@@ -1,4 +1,3 @@
-<script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
@@ -129,3 +128,17 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
 
     loadNews();
 </script>
+
+<script>
+    $(document).ready(function () {
+  
+      //Prevent characters or string asides number in ohone number input field 
+      $("#phone_no, #contact_phone_no, #tin_number").on("keypress keyup blur", function(event) {
+          $(this).val($(this).val().replace(/[^\d].+/, ""));
+          if ((event.which < 48 || event.which > 57)) {
+              event.preventDefault();
+          }
+      });  
+  
+  });
+  </script>
