@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-lg-7 offset-lg-1">
-                <form action="#" class="contact-form">
+                <form action="contact" class="contact-form" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <input type="text" placeholder="Your Name">
