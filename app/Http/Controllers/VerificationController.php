@@ -18,10 +18,12 @@ class VerificationController extends Controller
      */
     public function index()
     {
-        $verifications = DB::table('tbl_tax_stamp_duty');
+        $verifications = Verification::select('assess_no', 'payera_name', 'payerb_name', 'instrument_descrp', 'paid_amount')->paginate(10);
 
         $data = compact('verifications');
-        return view('verification', $data)->with('i');
+
+        return view('verification', $data)
+        ->with('i', (request()->input('page', 1) -1)*10);  
     }
 
     /**

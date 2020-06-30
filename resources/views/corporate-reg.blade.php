@@ -1,5 +1,7 @@
 @extends('layouts.mainlayout')
+@section('title', 'Create Corporate Account')
 @section('content')
+
     <div class="container">
         <!-- Tables -->
         <div class="row">
@@ -7,8 +9,8 @@
                 <div class="section">
                     <div class="section-head active">
                         <ul>                                   
-                            <li class="{{ Route::currentRouteNamed('individual-reg') ? 'active' : '' }}"><a href="/individual-reg">Individual Account </a></li>
-                            <li class="{{ Route::currentRouteNamed('corporate-reg') ? 'active' : '' }}"><a href="/corporate-reg" > Corporate Account</a></li>
+                            <li class="{{ Route::currentRouteNamed('individual-reg') ? 'active' : '' }}"><a href="{{ route('individual-reg') }}">Individual Account </a></li>
+                            <li class="{{ Route::currentRouteNamed('corporate-reg') ? 'active' : '' }}"><a href="{{ route('corporate-reg') }}" > Corporate Account</a></li>
                         </ul>
                     </div>
                     <hr/>
@@ -16,94 +18,130 @@
                     <!-- Section body -->
                     <div class="section-body">
                         <div class="tab-content">
+                        {{-- @include('layouts.partials._messages') --}}
+
                             <!-- Corperate registration -->
-                            <form action="#" class="contact-form">                                       
+                        <form method="POST" action="{{ route('corporate-account.store') }}" class="contact-form">        
+                                @csrf                               
+                            
                                 <div class="row">
-                                    <div class="form-group col-lg-7">
-                                        <div class="input-group">
-                                            <input id="individualTin" name="tinNo" placeholder="Enter your TIN" class="form-control" type="text" value=""/>
-                                            <button class="input-group-addon">Retrieve TIN Information</button>
-                                        </div>
+                                    <div class="form-group col-lg-6 ">
+                                        <label>TIN Number</label>
+                                        <span style="color:red; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
+                                        <input id="tin_number" name="tin_number" placeholder="Enter yout TIN Number" class="form-control @error('tin_number') is-invalid @enderror" type="tel"  value="{{ old('tin_number') }}" />
+                                        @error('tin_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
-                                    <div class="col-sm-2 col-md-2 col-lg-2">
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <span id="tspinner" style="display:none"><i
-                                                class="fa fa-spinner fa-spin fa-2x fa-fw"
-                                                aria-hidden="true"></i></span>
-                                        <span id="tcheck" style="display:none">
-                                            <i class="fa fa-check fa-2x" aria-hidden="true" aria-hidden="true"></i>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-lg-12 ">
-                                        <label>Name</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
-                                            class="pull-right">*</span>
-                                        <input id="firsfullname" name="firstname" data-validation="required" data-validation-error-msg="Please enter your TIN first and the system will retrieve your full name details." placeholder="Institution Name" class="form-control" required="true" type="text" value=""/>
+                                    <div class="form-group col-lg-6 ">
+                                        <label>Name of Institution</label>
+                                        <span style="color:red; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
+                                        <input id="institution_name" name="institution_name" placeholder="Institution Name" class="form-control @error('institution_name') is-invalid @enderror" type="text"  value="{{ old('institution_name') }}" />
+                                        @error('institution_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-lg-6 ">
-                                        <label>Email</label><span
-                                            style="color:#dfa974;; font-size:25px; margin-bottom:-10px"
-                                            class="pull-right">*</span>
-                                        <input type="hidden" name="type" value="coporate"/>
-                                        <input type="hidden" name="id" value=""/>
-                                        <input id="corporateemail" name="email" data-validation="email" data-validation-error-msg="You did not enter a valid e-mail" placeholder="Enter Email Address Here" type="email" class="form-control email" required="true" value=""/>
+                                        <label>Email</label>
+                                        <span style="color:red; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
+                                        <input id="email" name="email" placeholder="Enter Email Address Here" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" />
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group col-lg-6 ">
-                                        <label>Phone Number</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
-                                            class="pull-right">*</span>
-                                        <input id="phonenumber" name="phone" data-validation="required" data-validation-error-msg="Phone Number is required" placeholder="Enter Phone Number" type="text" class="form-control" required="true" value="" maxlength="13"/>
-                                        <input id="visiblephonenumber" name="visiblephone" type="hidden" value=""/>
+                                        <label>Phone Number</label>
+                                        <span style="color:red; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
+                                        <input id="phone_no" name="phone_no" placeholder="Enter Phone Number" type="tel" class="form-control" required="true" value="{{ old('phone_no') }}" maxlength="11" />
+                                        @error('phone_no')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-lg-12 ">
                                         <label>Office Address</label><span
-                                            style="color:#dfa974;; font-size:25px; margin-bottom:-10px"
+                                            style="color:red;; font-size:25px; margin-bottom:-10px"
                                             class="pull-right">*</span>
-                                            <textarea id="companyaddress" name="address" data-validation="required" data-validation-error-msg="Address is required" placeholder="Enter the Corporate Address here" class="form-control" required="true"></textarea>
+                                            <textarea id="address" name="address" placeholder="Enter the Corporate Address here" class="form-control @error('address') is-invalid @enderror">
+                                                {{ old('address') }}
+                                            </textarea>
+                                            @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-lg-6 ">
                                         <label class="pull-left">Country of Residence</label>
-                                        <select id="gender" name="gender" data-validation="required" value=""/>
-                                            <option value="SELECT">Select Country</option>
+                                        <select id="country_id" name="country_id" class="@error('country_id') is-invalid @enderror"/>
+                                            <option value="">Select Country</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->CountryID }}">{{ $country->Name }}</option>                                
+                                            @endforeach
                                         </select>
+                                        @error('country_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group col-lg-6 ">
                                         <label class="pull-left">State</label>
-                                        <select id="gender" name="gender" data-validation="required" value=""/>
-                                            <option value="SELECT">Select State</option>
+                                        <select id="states_id" name="states_id" class="@error('states_id') is-invalid @enderror"/>
+                                            <option value="">Select State</option>
+                                            @foreach ($states as $state)
+                                                <option value="{{ $state->StateID }}">{{ $state->StateName }}</option>                                
+                                            @endforeach
                                         </select>
+                                        @error('states_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-lg-6 ">
-                                        <label for="exampleInputEmail3">CAC Registration Number </label><span style="color:#dfa974; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
-                                        <input id="canregno" name="cacRegNo" data-validation="required" data-validation-error-msg="CAC Number is required" placeholder="Enter your corporate RC/BN/IT Number here" type="text" class="form-control" required="true" value=""/>
+                                        <label for="exampleInputEmail3">CAC Registration Number </label><span style="color:red; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
+                                        <input id="CAC_registration_number" name="CAC_registration_number" placeholder="Enter your corporate RC/BN/IT Number here" type="text" class="form-control @error('CAC_registration_number') is-invalid @enderror" value="{{ old('CAC_registration_number') }}" />
+                                        @error('CAC_registration_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group col-lg-6 ">
-                                        <label for="exampleInputEmail3">Date of Incorporation </label><span style="color:#dfa974; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
-                                        <input id="dateOfIncorporation" name="dateOfIncorporation" data-validation="required" data-validation-error-msg="Incopration Date is required" placeholder="Enter Company Incorporation Date" type="text" class="form-control" required="true" value=""/>
+                                        <label for="exampleInputEmail3">Date of Incorporation </label><span style="color:red; font-size:25px; margin-bottom:-10px" class="pull-right">*</span>
+                                        <input id="date_of_incorporation" name="date_of_incorporation"  placeholder="Enter Company Incorporation Date" type="date" class="form-control @error('date_of_incorporation') is-invalid @enderror" value="{{ old('date_of_incorporation') }}"/>
+                                        @error('date_of_incorporation')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
-                            </form>
 
                             <hr/>
 
@@ -116,36 +154,61 @@
 
                                     <div class="form-group col-lg-4 ">
                                         <label>First Name</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                            style="color:red; font-size:25px; margin-bottom:-10px"
                                             class="pull-right">*</span>
-                                        <input id="contactPersonFirstname" name="contactPersonFirstname" data-validation="required" data-validation-error-msg="First Name is required" placeholder="Enter your first name here" type="text" class="form-control" required="true" value=""/>
+                                    <input id="firstname" name="firstname" placeholder="Enter your first name here" type="text" class="form-control @error('firstname') is-invalid @enderror"  value="{{ old('firstname') }}"/>
+                                        @error('firstname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-lg-4 ">
                                         <label>Middle Name</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                            style="color:red; font-size:25px; margin-bottom:-10px"
                                             class="pull-right">*</span>
-                                        <input id="contactPersonMiddlename" name="contactPersonMiddlename" placeholder="Enter your middle name here" type="text" class="form-control" value=""/>
+                                        <input id="middlename" name="middlename" placeholder="Enter your middle name here" type="text" class="form-control @error('middlename') is-invalid @enderror"  value="{{ old('middlename') }}"/>
+                                        @error('middlename')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-lg-4 ">
                                         <label>Last Name</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                            style="color:red; font-size:25px; margin-bottom:-10px"
                                             class="pull-right">*</span>
-                                        <input id="contactPersonLastname" name="contactPersonLastname" data-validation="required" data-validation-error-msg="Last Name is required" placeholder="Enter your surname here" type="text" class="form-control" required="true" value=""/>
+                                        <input id="lastname" name="lastname" placeholder="Enter your surname here" type="text" class="form-control @error('lastname') is-invalid @enderror"  value="{{ old('lastname') }}"/>
+                                        @error('lastname')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-lg-6 ">
                                         <label>Email</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                            style="color:red; font-size:25px; margin-bottom:-10px"
                                             class="pull-right">*</span>
-                                        <input id="contactPersonEmail" name="contactPersonEmail" data-validation="email" data-validation-error-msg="Enter a valid email" placeholder="Enter your email address here" type="email" class="form-control" required="true" value=""/>
+                                        <input id="contact_email" name="contact_email" placeholder="Enter your email address here" type="email" class="form-control @error('contact_email')is-invalid @enderror"  value="{{ old('contact_email') }}"/>
+                                        @error('contact_email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group col-lg-6 ">
                                         <label>Phone</label><span
-                                            style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                            style="color:red; font-size:25px; margin-bottom:-10px"
                                             class="pull-right">*</span>
-                                        <input id="contactPersonPhone" name="contactPersonPhone" data-validation="text" data-validation-error-msg="Phone Number is required" placeholder="Enter your phone number here" type="text" class="form-control number" required="true" value="" maxlength="13"/>
+                                        <input id="contact_phone_no" name="contact_phone_no" placeholder="Enter your phone number here" type="text" class="form-control @error('contact_phone_no')is-invalid @enderror" value="{{ old('contact_phone_no') }}"  maxlength="11"/>
+                                        @error('contact_phone_no')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -158,42 +221,89 @@
                             </div>
 
                             <div class="section-body">
-                                <div class="tab-content">
-                                    <form action="#" class="contact-form">                                       
+                                <div class="tab-content contact-form">
                                         <div class="row">
                                             <div class="form-group col-lg-4 ">
                                                 <label>Username</label><span
-                                                    style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                                    style="color:red; font-size:25px; margin-bottom:-10px"
                                                     class="pull-right">*</span>
-                                                <input id="iusername" name="iusername" data-validation="required" placeholder="Username" class="form-control username" required="true" type="text" value=""/>
+                                            <input id="username" name="username" placeholder="Username" class="form-control @error('username')is-invalid @enderror" type="text" value="{{ old('username') }}"/>
+                                                @error('username')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
 
                                             <div class="form-group col-lg-4 ">
                                                 <label>Password</label><span
-                                                    style="color:#dfa974; font-size:25px; margin-bottom:-10px"
+                                                    style="color:red; font-size:25px; margin-bottom:-10px"
                                                     class="pull-right">*</span>
-                                                <input id="password" name="password" minlength="8" data-validation="required" placeholder="Password" type="password" class="form-control" required="true" value=""/>
+                                                <input id="password" name="password" minlength="8" placeholder="Password" type="password" class="form-control @error('password')is-invalid @enderror">
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <div class="form-group col-lg-4 ">
                                                 <label>Confirm Password</label><span
                                                     style="color:red; font-size:25px; margin-bottom:-10px"
                                                     class="pull-right">*</span>
-                                                <input id="passwordV" name="passwordV" minlength="8" data-validation="required" data-validation-error-msg="Confirm Password is required" placeholder="Confirm Password " type="password" class="form-control" required="true" value=""/>
+                                                <input id="confirm_password" name="confirm_password" minlength="8" placeholder="Confirm Password" type="password" class="form-control @error('confirm_password')is-invalid @enderror" />
+                                                @error('confirm_password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
-                                        <div class = "row">
+                                        <div class="row">
                                             <div class="col-lg-12">
-                                                <button type="submit">Submit Now</button>
+                                                <button type="submit">Create Account!</button>
                                             </div>
                                         </div>
-                                    </form>
                                 </div>       
-                            </div>           
+                            </div>    
+                        </form>
+
                         </div>            
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+        // $('#colleges_id').on('change',function () {
+        //      let college_id = $('#colleges_id').find('option:selected').val();
+        //      $.ajaxSetup({
+        //          headers: {
+        //              'X-CSRF_TOKEN':$('meta[name="csrf-token"]').attr('content')
+        //          }
+        //      });
+     
+        //      $.ajax({
+        //          url: "",
+        //          method: "GET",
+        //          dataType: "JSON",
+        //          data: {college_id:college_id},
+        //          success: function(data){
+        //              if(data){
+        //                  $('#departments_id').html(data.collegeDepartment);
+        //              }
+        //          },
+        //      })
+        //  })
+     
+         $('#country_id').on('change',function () {
+             let country_id = $('#country_id').find('option:selected').val();
+             if(country_id != 156){
+                 $('#states_id').prop('selectedIndex', 1).val();
+             }else{
+                 $('#states_id').prop('selectedIndex', 0).val();
+             }
+         })
+     
+     </script>
 @endsection

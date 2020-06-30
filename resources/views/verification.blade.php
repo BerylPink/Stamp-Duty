@@ -27,7 +27,7 @@
                 </div>
         </form>
 
-        @if($is_displayed == 1)
+        {{-- @if($is_displayed == 1)  --}}
 
         <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -39,7 +39,7 @@
                         <th>S/N</th>
                         <th class="text-center">Ceritifcate Number</th>
                         <th>Names of Parties</th>
-                        <th>Instrumennt Name</th>
+                        <th>Instrument Name</th>
                         <th>Amount Paid (₦)</th>
                     </tr>
                 </thead>
@@ -49,15 +49,18 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $verification->assess_no }}</td>
-                            <td>{{ $verification->payera_name. ' '.$admin->payerb_name  }}</td>
-                            <td>{{ $verification->tbl_duty_instruments_name }}</td>
+                            <td>{{ $verification->payera_name. ' '.$verification->payerb_name  }}</td>
+                            <td>{{ $verification->instrument_descrp }}</td>
                             <td>{{ $verification->paid_amount }}</td>
                         </tr>
                     @endforeach
                     </form>
                 </tbody>
                 </table>
+            <span class="d-flex justify-content-end">{{ $verifications->links() }}</span> 
+
             </div>
+
             </div>
         </div>
         </div>

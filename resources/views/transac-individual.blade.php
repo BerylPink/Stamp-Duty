@@ -1,16 +1,21 @@
 @extends('layouts.mainlayout')
 @section('content')
-    
+    <style>
+        a:hover{
+            color: blue;
+        }
+    </style>
     <!--MAIN CONTENT AREA-->
     <div class="container">
         <!-- Tables -->
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-md-12">
                 <div class="section">
                     <div class="section-head active">
                         <ul>                                   
-                            <li class="{{ Route::currentRouteNamed('transac-individual') ? 'active' : '' }}"><a href="/transac-individual">Individual Transactions </a></li>
-                            <!-- <li class="{{ Route::currentRouteNamed('transac-bulk') ? 'active' : '' }}"><a href="/transac-bulk" > Bulk Transactions</a></li> -->
+                            <li class="{{ Route::currentRouteNamed('transac-individual') ? 'active' : '' }}">
+                                <a href="/transac-individual">Individual Transactions </a></li>
+                            
                         </ul>
                     </div>
                     <hr/>
@@ -19,7 +24,7 @@
                         <div class="tab-content">
                             <!--------- Individual Transactions -->
                                 <div class="col-lg-12">
-                                    <table id="example" class="table  table-striped table-bordered">
+                                    <table id="example" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
@@ -35,22 +40,25 @@
                                             @foreach($transactions as $transaction)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
-                                                <td>{{ $transaction->name}}</td>
+                                            <td><a href="{{ route('login') }}">{{ $transaction->name}}</a></td>
                                                 <td>{{ $transaction->rate_type }}</td>
                                                 <td>{{ $transaction->rate }}</td>
                                                 <td>{{ $transaction->extra_copy }}</td>
                                             </tr>
-                                
+                                            @endforeach
                                         </tbody>
 
                                     </table>
 
                             </div>
                         </div>
+                        <span class="d-flex justify-content-end">{{ $transactions->links() }}</span> 
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    
 @endsection

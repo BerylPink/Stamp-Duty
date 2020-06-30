@@ -13,44 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::view('/',                                    'home')->name('home');
+Route::view('/about',                               'about')->name('about');
+Route::view('/contact',                             'contact')->name('contact');
+Route::get('/create-individual-account',            'IndividualAccountController@index')->name('individual-reg');
+Route::get('/create-corporate-account',             'CorporateAccountController@index')->name('corporate-reg');
 
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');;
-
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-// Route::get('verification', function () {
-//     return view('verification');
-// })->name('verification');;
-
-Route::get('/individual-reg', function () {
-    return view('individual-reg');
-})->name('individual-reg');;
-
-Route::get('/corporate-reg', function () {
-    return view('corporate-reg');
-})->name('corporate-reg');;
-
-// Route::get('/transac-individual', function () {
-//     return view('transac-individual');
-// })->name('transac-individual');;
-
-Route::resource('/transac-individual',                'TransacIndividualController');
+Route::get('/login',                                'Auth\LoginController@index')->name('login');
+Route::get('/logout',                               'Auth\LoginController@logout')->name('logout');
+Route::post('/verify-credentials',                  'Auth\LoginController@verifyCredentials')->name('verify.credentials');
+Route::get('/auth-check',                           'AuthCheckController@redirectAfterAuth')->name('auth.check');
 
 
-Route::resource('/verification',                'VerificationController');
+Route::resource('/individual-account',              'IndividualAccountController');
 
-// Auth::routes();
+Route::resource('/corporate-account',               'CorporateAccountController');
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/transac-individual',              'TransacIndividualController');
 
+Route::resource('/verification',                    'VerificationController');
+
+Route::group(['middleware' => ['iaUserType']], function(){
+    Route::get('/individual/dashboard',             'DashboardController@indvidualDashboard')->name('ia.dashboard');
+});
+
+Route::group(['middleware' => ['caUserType']], function(){
+    Route::get('/corporate/dashboard',              'DashboardController@corporateDashboard')->name('ca.dashboard');
+});

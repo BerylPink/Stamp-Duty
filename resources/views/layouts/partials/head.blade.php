@@ -1,11 +1,10 @@
 <head>
     <title>Stamp Duty</title>
     <meta charset="UTF-8">
-    <meta name="description" content="Sona Template">
-    <meta name="keywords" content="Sona, unica, creative, html">
+    <meta name="description" content="Stamp Duty">
+    <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sona | Template</title>
 
     
     <!-- Google Font -->
@@ -29,5 +28,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/mediaelementplayer.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}" type="text/css">
+    <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 
 </head>
