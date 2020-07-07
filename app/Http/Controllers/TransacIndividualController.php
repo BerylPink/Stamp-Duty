@@ -17,13 +17,13 @@ class TransacIndividualController extends Controller
      */
     public function index()
     {
-        $transactions = TransacIndividual::select('name', 'rate_type', 'rate', 'extra_copy')
-        ->orderBy('name')->paginate(10);
+        $transactions = TransacIndividual::select('name', 'rate', 'extra_copy')
+        ->orderBy('name')->paginate(4);
 
         $data = compact('transactions');
 
         return view('transac-individual', $data)
-        ->with('i', (request()->input('page', 1) -1)*10);  
+        ->with('i', (request()->input('page', 1) -1)*5);  
     }
 
     /**
@@ -58,7 +58,7 @@ class TransacIndividualController extends Controller
         $userExists = TransacIndividual::findOrFail($id);
 
             $transaction = DB::table('tbl_duty_instruments')
-            ->select('name', 'rate_type', 'rate', 'extra_copy')
+            ->select('name', 'rate', 'extra_copy')
             ->where('tbl_duty_instruments.id', $id)->first();
 
             $data = compact('transaction');

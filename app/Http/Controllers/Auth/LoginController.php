@@ -44,46 +44,39 @@ class LoginController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return redirect()->route('auth-check');
+            return view('assessments');
         } else{
-            return view('login');
+            return view('layouts.partials.login');
         }
     }
 
     public function verifyCredentials(Request $request){
         //Check if both the email and password field are not empty with laravel validate function
         $this->validate($request, [
-            'username'      =>  'required',
+            'email'         =>  'required',
             'password'      =>  'required'
         ]);
 
         //Push values from email and password input fields into an array 
         $user_data = array(
-            'username'      =>  $request->get('username'),
+            'email'         =>  $request->get('email'),
             'password'      =>  $request->get('password')
         );
 
         //Attempt to authenticate user provided credentials
         if(Auth::attempt($user_data)){
-            return redirect()->route('auth.check');
+            return view('assessments');
         }else{
-            return back()->with('error','Invalid credentials.');
+            return back()->with('error','Invalid credentials. Please Register' );
         }
     }
 
-    public function roleCheck(){
-
-        $rolecheck = User::select('user_type')
-        ->where('users.id', '=', Auth::id())->first();
-
-        return $rolecheck->user_type;
-    }
-
+    
     public function userID(){
         if (Auth::check()) {
             return Auth::id();
         } else{
-            return view('login');
+            return view('layouts.partials.login');
         }
     }
 

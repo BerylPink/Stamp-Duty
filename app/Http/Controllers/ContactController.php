@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Http\Requests\ContactRequest;
+use App\Http\Requests\ContactRequest;
 
 use Mail;
 use App\Mail\NewContactRequest;
@@ -55,9 +55,11 @@ class ContactController extends Controller
 
     Public function mail(ContactRequest $request)
     {
+        // dd($request);
+        
         mail::to('ntimiadiel@gmail.com')->send(new NewContactRequest($request));
 
-        return view('contact');
+        return back()->with('status', 'Your message has been recieved');
     }
 
     /**

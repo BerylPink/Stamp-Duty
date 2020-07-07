@@ -4,7 +4,7 @@
       <div class="col-lg-2">
         <div class="logo">
           <a href="#">
-            <img src="{{ asset('uploads/kaduna-logo.png') }}" alt="Kaduna State Logo" width="70" height="auto">
+            <img src="{{ asset('uploads/statelogo.png') }}" alt="Kaduna State Logo" width="50" height="auto">
           </a>
         </div>
       </div>
@@ -19,9 +19,6 @@
               <li class="{{ Route::currentRouteNamed('contact') ? 'active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
           </nav>
-            <div class="nav-right search-switch">
-                <i class="icon_search"></i>
-            </div>
         </div>
       </div>
     </div>

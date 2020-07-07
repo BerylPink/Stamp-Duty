@@ -23,7 +23,7 @@ class VerificationController extends Controller
         $data = compact('verifications');
 
         return view('verification', $data)
-        ->with('i', (request()->input('page', 1) -1)*10);  
+        ->with('i', (request()->input('page', 1) -1)*5);  
     }
 
     /**

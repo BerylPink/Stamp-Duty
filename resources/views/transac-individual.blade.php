@@ -6,7 +6,8 @@
         }
     </style>
     <!--MAIN CONTENT AREA-->
-    <div class="container">
+    <hr/>
+    <div class="container d-flex justify-content-center">
         <!-- Tables -->
         <div class="row">
             <div class="col-md-12">
@@ -29,7 +30,6 @@
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Name</th>
-                                                <th>Type</th>
                                                 <th>Rate</th>
                                                 <th>Extra Copy</th>
                                             </tr>
@@ -40,8 +40,7 @@
                                             @foreach($transactions as $transaction)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
-                                            <td><a href="{{ route('login') }}">{{ $transaction->name}}</a></td>
-                                                <td>{{ $transaction->rate_type }}</td>
+                                                <td><a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#loginModal"href="{{ route('login') }}">{{ $transaction->name}}</a></td>
                                                 <td>{{ $transaction->rate }}</td>
                                                 <td>{{ $transaction->extra_copy }}</td>
                                             </tr>
