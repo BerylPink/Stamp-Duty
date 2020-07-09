@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
+use Auth;
 use App\Assessment;
 
 class AssessmentController extends Controller
@@ -15,13 +15,17 @@ class AssessmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function __construct() {
-        $this->middleware('auth:web');
-    }
+    // public function __construct() {
+    //     $this->middleware('auth:web');
+    // }
     
-     public function index()
+    public function index()
     {
-        //
+        if(Auth::check()){
+            return view('assessments');
+        }else{
+            return back()->with('error', 'Please login to access this service.');
+        }
     }
     
 

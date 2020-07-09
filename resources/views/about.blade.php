@@ -24,7 +24,7 @@
      
      
      <!-- Breadcrumb Section Begin -->
-     <div class="breadcrumb-section">
+     <div class="breadcrumb-section mt-5 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -98,7 +98,7 @@
             </div>
             <div class="about-page-services">
                 <div class="row">
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <div class="ap-service-item set-bg" data-setbg="img/about/about-p1.jpg">
                             <div class="api-text">
                                 <h3>Restaurants Services</h3>
@@ -118,7 +118,7 @@
                                 <h3>Event & Party</h3>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

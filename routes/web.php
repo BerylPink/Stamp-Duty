@@ -24,7 +24,9 @@ Route::get('/login',                                'Auth\LoginController@index'
 Route::get('/logout',                               'Auth\LoginController@logout')->name('logout');
 Route::post('/verify-credentials',                  'Auth\LoginController@verifyCredentials')->name('verify.credentials');
 // Route::get('/auth-check',                           'AuthCheckController@redirectAfterAuth')->name('auth.check');
+Route::post('/create-account',                      'RegisterController@store')->name('create.user');
 
+Route::resource('/assessments',                      'AssessmentController');
 
 Route::resource('/individual-account',              'IndividualAccountController');
 
@@ -45,8 +47,6 @@ Route::resource('/verification',                    'VerificationController');
 
 Route::get('contact', 'ContactController@show')->name('contact');
 Route::post('contact', 'ContactController@mail')->name('contact');
-
-Route::view('/assessment',                               'assessments')->name('assessment');
 
 Route::view('/certificate',                               'certificate')->name('certificate');
 

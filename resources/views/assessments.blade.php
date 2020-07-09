@@ -1,3 +1,4 @@
+@include('layouts.partials._messages')
 @extends('layouts.mainlayout')
 @section('content')
 

@@ -1,3 +1,4 @@
+@include('layouts.partials._messages')
 @extends('layouts.mainlayout')
 @section('content')
     <style>
@@ -40,7 +41,7 @@
                                             @foreach($transactions as $transaction)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
-                                                <td><a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#loginModal"href="{{ route('login') }}">{{ $transaction->name}}</a></td>
+                                                <td><a class="nav-link" style="cursor: pointer" href="{{ route('assessments.index') }}">{{ $transaction->name}}</a></td>
                                                 <td>{{ $transaction->rate }}</td>
                                                 <td>{{ $transaction->extra_copy }}</td>
                                             </tr>

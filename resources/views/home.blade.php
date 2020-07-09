@@ -1,5 +1,7 @@
+@include('layouts.partials._messages')
 @extends('layouts.mainlayout')
 @section('content')
+
    <!--page_container-->
    <section class="hero-section">
         <div class="container">
@@ -22,7 +24,7 @@
         </div>
     </section>
 
-    <section class="services-section spad">
+    <section class="services-section spad mt-5 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

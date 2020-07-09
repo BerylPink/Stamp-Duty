@@ -10,12 +10,11 @@
 
             <div class="modal-body mx-3">
 
-                <form method="POST" action="{{ route('login') }}" class="contact-form">
+                <form method="POST" action="{{ route('verify.credentials') }}" class="contact-form">
                     @csrf
             
                     <div class="md-form mb-5">
-                        <i class="fa fa-envelope prefix grey-text"></i>
-                        <label class="text-left" data-error="wrong" data-success="right" for="email"> {{ __('Your Email') }} </label>
+                        <label class="text-left" data-error="wrong" data-success="right" for="email"> {{ __('Email') }} </label>
                         <input type="text" id="email" class="form-control validate @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                         @error('email')
@@ -27,8 +26,6 @@
                     </div>
 
                     <div class="md-form mb-5">
-
-                        <i class="fa fa-lock prefix grey-text"></i>
                         <label data-error="wrong" data-success="right" for="password">{{ __('Password') }}</label>
                         <input type="password" id="password" class="form-control validate @error('password') is-invalid @enderror" name="password" required>
 
@@ -41,21 +38,21 @@
                     </div>
                     
                     
-                    <div class="form-group row">
-                    <div class="col-md-6 offset-md-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    {{-- <div class="form-group row">
+                        <div class="col-md-6 offset-md-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                            <label class="form-check-label" for="remember">
-                                {{ __('Remember Me') }}
-                            </label>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div> --}}
 
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="submit">{{ __('Login') }} </button>
+                    <button type="submit" class="btn btn-primary">{{ __('Login') }} </button>
 
                     @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">

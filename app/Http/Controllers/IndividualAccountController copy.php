@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-use App\Register;
-use App\Localgovernment;
+use App\IndividualAccount;
 use App\User;
+use App\Country;
+use App\State;
 
-class RegisterController extends Controller
+class IndividualAccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +19,13 @@ class RegisterController extends Controller
      */
     public function index()
     {
-    
-        
-        $tbl_lga = Localgovernment::select('id', 'descrp')->get();
+        $countries = Country::select('CountryID', 'Name')->get();
 
-        // $tbl_lga = compact('tbl_lga');
-        // dd($tbl_lga);
+        $states = State::select('StateID', 'StateName')->get();
 
-        return view('layouts.partials.register' , $tbl_lga);
+        $data = compact('countries', 'states');
+
+        return view('layouts.partials.register', $data);
     }
 
     /**
@@ -36,7 +36,6 @@ class RegisterController extends Controller
     public function create()
     {
         //
-        
     }
 
     /**
@@ -47,42 +46,50 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
+        //Validate request
         $this->validateRequest();
 
         //INSERT INTO `users` table
-        $register = User::create([
-            
-            'tbl_lga_id'                        => $request->input('tbl_lga_id'),
+        
+
+        $individualAccount = IndividualAccount::create([
+            'users_id'                          => $users->id,
+            'country_id'                        => $request->input('country_id'),
+            'states_id'                         => $request->input('states_id'),
+            'tin_number'                        => $request->input('tin_number'),
             'firstname'                         => $request->input('firstname'),
             'lastname'                          => $request->input('lastname'),
             'phone_no'                          => $request->input('phone_no'),
             'email'                             => $request->input('email'),
-            'password'                          => Hash::make($request->input('password')),
             'gender'                            => $request->input('gender'),
-            'address'                           => $request->input('address'),
         ]);
 
         //If successfully created go to login page
-        if($register){
-            return redirect()->route('home')->with('success', 'Account has been created!');
+        if($users AND $individualAccount){
+            return redirect()->route('login')->with('success', $request->input('firstname').' '.$request->input('lastname').'\'s account has been created!');
         }
 
         //If errors occur, return back to  individual account registration page
         return back()->withInput();
+
     }
 
-
+    /**
+     * Validate user input fields
+     */
     private function validateRequest(){
         return request()->validate([
-           
+            'tin_number'                =>   'required|unique:individual_accounts,tin_number',
             'firstname'                 =>   'required',
             'lastname'                  =>   'required', 
-            'email'                     =>   'required|email|unique:users,email',
-            'phone_no'                  =>   'required|Numeric|unique:users,phone_no',
+            'email'                     =>   'required|email|unique:individual_accounts,email', 
+            'phone_no'                  =>   'required|Numeric|unique:individual_accounts,phone_no',
             'gender'                    =>   'required', 
-            'tbl_lga_id'                =>   'required',
-            'address'                   =>   'required',
-            'password'                  =>   'required|min:5',
+            'country_id'                =>   'required',
+            'states_id'                 =>   'required',
+            'username'                  =>   'required',
+            'password'                  =>   'required',
             'confirm_password'          =>   'required|same:password',
         ]);
     }

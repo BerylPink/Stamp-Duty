@@ -44,31 +44,36 @@ class LoginController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return view('assessments');
+            return redirect()->route('assessments.index');
         } else{
-            return view('layouts.partials.login');
+            return view('homw');
         }
     }
 
+    //This function will validate a user login credentials
     public function verifyCredentials(Request $request){
         //Check if both the email and password field are not empty with laravel validate function
         $this->validate($request, [
-            'email'         =>  'required',
-            'password'      =>  'required'
+            'email'     =>  'required|email',
+            'password'  =>  'required|min:5'
         ]);
 
         //Push values from email and password input fields into an array 
         $user_data = array(
-            'email'         =>  $request->get('email'),
-            'password'      =>  $request->get('password')
+            'email'     =>  $request->get('email'),
+            'password'  =>  $request->get('password')
         );
 
-        //Attempt to authenticate user provided credentials
         if(Auth::attempt($user_data)){
-            return view('assessments');
+
+            return redirect()->route('assessments.index')
+            ->with('success','Welcome! '.Auth::user()->firstname.' '.Auth::user()->lastname); 
+            
         }else{
-            return back()->with('error','Invalid credentials. Please Register' );
+            //Return error message once authentication fails
+            return back()->with('error','Invalid login credentials');
         }
+
     }
 
     
@@ -76,7 +81,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return Auth::id();
         } else{
-            return view('layouts.partials.login');
+            return view('home');
         }
     }
 
