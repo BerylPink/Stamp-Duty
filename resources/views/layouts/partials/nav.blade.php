@@ -12,14 +12,18 @@
         @include('layouts.partials.login')
           <div class="tn-right">
             <div class="signer">
-             
               <ul class="tn-right">                                   
+                @auth
+                  <li><a class="nav-link" style="cursor: pointer" href="{{ route('logout') }}">Logout</a>
+                @else
                   <li><a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#loginModal"> {{ __('Login') }}</a></li>
                     <label>|</label>
                   <li><a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#registerModal">{{ __('Sign Up') }}</a>
+                
+                  @include('layouts.partials.register')
+                @endauth
               </ul>
-              
-              @include('layouts.partials.register')
+
             </div>
           </div>
         </div>

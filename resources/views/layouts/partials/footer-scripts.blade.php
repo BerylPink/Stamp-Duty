@@ -108,32 +108,32 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
     }
 
     //getlatest news
-    function loadNews() {
-        $.ajax({
-            type: 'GET',
-            url: '/admin/portal/latest_news/get_news',
-            dataType: "text",
-            success: function (data) {
-                $('#latest_news').html(data);
-                console.log(data);
-            },
+    // function loadNews() {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '/admin/portal/latest_news/get_news',
+    //         dataType: "text",
+    //         success: function (data) {
+    //             $('#latest_news').html(data);
+    //             console.log(data);
+    //         },
 
-            error: function (error) {
-                console.log("Error loading news");
-            }
+    //         error: function (error) {
+    //             console.log("Error loading news");
+    //         }
 
-        })
+    //     })
 
-    }
+    // }
 
-    loadNews();
+    // loadNews();
 </script>
 
 <script>
     $(document).ready(function () {
   
       //Prevent characters or string asides number in ohone number input field 
-      $("#phone_no, #contact_phone_no, #tin_number").on("keypress keyup blur", function(event) {
+      $("#phone_no, #party_b_phone_no, .phone_no, .party_b_phone_no").on("keypress keyup blur", function(event) {
           $(this).val($(this).val().replace(/[^\d].+/, ""));
           if ((event.which < 48 || event.which > 57)) {
               event.preventDefault();
@@ -142,3 +142,5 @@ $('.login-reg-panel input[type="radio"]').on('change', function() {
   
   });
   </script>
+
+
