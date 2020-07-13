@@ -46,7 +46,7 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect()->route('assessments.index');
         } else{
-            return view('homw');
+            return view('home');
         }
     }
 

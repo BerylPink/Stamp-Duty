@@ -10,6 +10,8 @@
                 <br />
                 <form id="partyform" method="POST" action="{{ route('assessments.store') }}">
                     @csrf
+                    <input type="hidden" name="stamp_duty_id" class="form-control" value="{{ $stampDutyId}}">
+
                     <div class="row">
                         <div class="col-md-12">
                             <h5>Party A</h5>

@@ -8,6 +8,7 @@ use Auth;
 use App\PartyA;
 use App\PartyB;
 use App\InstrumentDetails;
+use App\StampDutyHistory;
 
 class AssessmentController extends Controller
 {
@@ -23,10 +24,10 @@ class AssessmentController extends Controller
     
     public function index()
     {
-        if(Auth::check()){
-            return view('assessments');
-        }else{
-            return back()->with('error', 'Please login to access this service.');
+        if (Auth::check()) {
+            return redirect()->route('assessments.index');
+        } else{
+            return view('home');
         }
     }
     
@@ -50,24 +51,40 @@ class AssessmentController extends Controller
     public function store(Request $request)
     {
 
+        // return $request;
         $this->validateRequest();
-
-        $instrumentDetails = InstrumentDetails::create([
-            'transaction_date'      =>  $request->input('transaction_date'),
-            'no_of_extra_copies'    =>  $request->input('no_of_extra_copies'),
-        ]);
 
         $payerAIds = $request->input('payer_id');
 
         $payerBIds = $request->input('party_b_payer_id');
 
+        if($payerAIds){
+
+            foreach($payerAIds as $payerAId => $names){
+
+                if($payerAId == 0){
+
+                    $partyAName = $request->input('business_or_last_name')[$payerAId].' '.$request->input('firstname')[$payerAId];
+
+                    $partAPhoneNumber = $request->input('phone_no')[$payerAId];
+
+                    $partyBName = $request->input('party_b_business_or_last_name')[$payerAId].' '.$request->input('party_b_firstname')[$payerAId];
+
+                    $partBPhoneNumber = $request->input('party_b_phone_no')[$payerAId];
+
+                    // echo $partyAName.' ('.$partAPhoneNumber.')<br>';
+                    // echo $partyBName.' ('.$partBPhoneNumber.')<br>';
+                }
+            }
+        }
+
+        $instrumentDetails = InstrumentDetails::create([
+            'transaction_date'      =>  $request->input('transaction_date'),
+            'no_of_extra_copies'    =>  $request->input('no_of_extra_copies'),
+        ]);
+        
         if($instrumentDetails){
 
-        // foreach($payerAIds as $payerAId => $value){
-        //     echo $request->input('business_or_last_name')[$payerAId].'<br>';
-        // }
-
-        // dd();
             if(!empty($payerAIds)){
 
                 foreach($payerAIds as $payerAId => $value){
@@ -99,10 +116,26 @@ class AssessmentController extends Controller
                         'party_b_address'                   =>   $request->input('party_b_address')[$payerBId]
                     ]);
                 }
-
             }
-                return redirect('/transac-individual')->with('success', 'Assessment has be saved. You will be re-directed to Interswitch to make payments.');
-            
+
+            $stampDutyRecord = StampDutyHistory::create([
+                'users_id'                  =>  Auth::id(), 
+                'tax_stamp_duty_id'         =>  $request->input('stamp_duty_id'), 
+                'certificate_no'            =>  $this->random_strings(10), 
+                'party_a_name'              =>  $partyAName, 
+                'party_a_phone_no'          =>  $partAPhoneNumber, 
+                'party_b_name'              =>  $partyBName, 
+                'party_b_phone_no'          =>  $partBPhoneNumber, 
+                'reference_no'              =>  'KD20071616',
+            ]);
+
+
+            if($stampDutyRecord){
+                return redirect('/stamp-duty-history')->with('success', 'Assessment has be saved. Proceed to make payments.');
+            }else{
+                return back()->with('error', 'Failed to save Assessment form.');
+            }
+
         }
         
         return back()->withInput();
@@ -129,6 +162,19 @@ class AssessmentController extends Controller
             'no_of_extra_copies'                  =>   'required'
         ]);
     }
+
+    // This function will return a random 
+    // string of specified length 
+    public function random_strings($length_of_string) 
+    { 
+    
+        // String of all alphanumeric character 
+        $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
+    
+        // Shufle the $str_result and returns substring 
+        // of specified length 
+        return strtoupper(substr(str_shuffle($str_result), 0, $length_of_string)); 
+    } 
     /**
      * Display the specified resource.
      *
@@ -137,7 +183,14 @@ class AssessmentController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::check()){
+            $stampDutyId = $id;
+
+            return view('assessments', compact('stampDutyId'));
+
+        }else{
+            return back()->with('error', 'Please login to access this service.');
+        }
     }
 
     /**

@@ -36,18 +36,11 @@ Route::resource('/transac-individual',              'TransacIndividualController
 
 Route::resource('/verification',                    'VerificationController');
 
-// Route::group(['middleware' => ['iaUserType']], function(){
-//     Route::get('/individual/dashboard',             'DashboardController@indvidualDashboard')->name('ia.dashboard');
-// });
-
-// Route::group(['middleware' => ['caUserType']], function(){
-//     Route::get('/corporate/dashboard',              'DashboardController@corporateDashboard')->name('ca.dashboard');
-// });
-
+Route::resource('/stamp-duty-history',              'StampDutyHistoryController');
 
 Route::get('contact', 'ContactController@show')->name('contact');
 Route::post('contact', 'ContactController@mail')->name('contact');
 
-Route::view('/certificate',                               'certificate')->name('certificate');
+Route::get('/stamp-duty-certificate/{id}',          'StampDutyHistoryController@edit')->name('certificate');
 
-Route::view('/invoice',                               'invoice')->name('invoice');
+Route::get('/stamp-duty-invoice/{id}',              'StampDutyHistoryController@show')->name('invoice');

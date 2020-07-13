@@ -14,7 +14,8 @@
             <div class="signer">
               <ul class="tn-right">                                   
                 @auth
-                  <li><a class="nav-link" style="cursor: pointer" href="{{ route('logout') }}">Logout</a>
+                  <li><a class="nav-link" style="cursor: pointer" href="{{ url('/stamp-duty-history') }}">Stamp Duty History</a>|
+                    <li><a class="nav-link" style="cursor: pointer" href="{{ route('logout') }}">Logout</a>
                 @else
                   <li><a class="nav-link" style="cursor: pointer" data-toggle="modal" data-target="#loginModal"> {{ __('Login') }}</a></li>
                     <label>|</label>

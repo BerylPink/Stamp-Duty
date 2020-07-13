@@ -17,13 +17,13 @@ class TransacIndividualController extends Controller
      */
     public function index()
     {
-        $transactions = TransacIndividual::select('name', 'rate', 'extra_copy')
+        $transactions = TransacIndividual::select('id', 'name', 'rate', 'extra_copy')
         ->orderBy('name')->paginate(4);
 
-        $data = compact('transactions');
+        $data = compact('transactions'); 
 
         return view('transac-individual', $data)
-        ->with('i', (request()->input('page', 1) -1)*5);  
+        ->with('i', (request()->input('page', 1) -1)*4);  
     }
 
     /**

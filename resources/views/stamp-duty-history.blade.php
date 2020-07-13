@@ -15,8 +15,8 @@
                 <div class="section">
                     <div class="section-head active">
                         <ul>                                   
-                            <li class="{{ Route::currentRouteNamed('transac-individual') ? 'active' : '' }}">
-                                <a href="/transac-individual">Individual Transactions </a></li>
+                            <li class="{{ Route::currentRouteNamed('stamp-duty-history') ? 'active' : '' }}">
+                                <a href="/stamp-duty-history">Stamp Duty History </a></li>
                             
                         </ul>
                     </div>
@@ -30,20 +30,32 @@
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>Name</th>
-                                                <th>Rate</th>
-                                                <th>Extra Copy</th>
+                                                <th>Transaction Date</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
 
                                         <tbody>
                                             
-                                            @foreach($transactions as $transaction)
+                                            @foreach($stampDutyHistories as $stampDutyHistory)
                                             <tr>
                                                 <td>{{ ++$i }}</td>
-                                                <td><a class="nav-link" style="cursor: pointer" href="{{ route('assessments.show', $transaction->id) }}">{{ $transaction->name}}</a></td>
-                                                <td>{{ $transaction->rate }}</td>
-                                                <td>{{ $transaction->extra_copy }}</td>
+                                                <td>
+                                                    <?php                                  
+                                                        $date = \Carbon\Carbon::parse($stampDutyHistory->created_at , 'UTC');
+                                                        // echo $date->isoFormat('MMMM Do YYYY h:mm:ss');
+                                                        echo $date->isoFormat('LLLL');
+                                                    ?>
+                                                </td>
+
+                                                <td>
+                                                    <a class="nav-link" style="cursor: pointer" href="{{ route('invoice', $stampDutyHistory->id) }}">
+                                                        Print Invoice
+                                                    </a>
+                                                    <a class="nav-link" style="cursor: pointer" href="{{ route('certificate', $stampDutyHistory->id) }}">
+                                                        Print Certificate
+                                                    </a>
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -52,7 +64,7 @@
 
                             </div>
                         </div>
-                        <span class="d-flex justify-content-end">{{ $transactions->links() }}</span> 
+                        <span class="d-flex justify-content-end">{{ $stampDutyHistories->links() }}</span> 
 
                     </div>
                 </div>

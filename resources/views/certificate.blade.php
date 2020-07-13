@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Stamp Duty Certificate</title>
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
         <style type="text/css">
             #loaderdiv {
                 width: 100%;
@@ -56,7 +56,9 @@
     </head>
     <body class="nav-md" style="border:none; background-color:#FFF;"> 
         <div class="x_title" style="border:none; margin: 0 auto">
-            <h2 style=" width:100%; text-align: center;">Stamp Duty Certificate</h2>
+            <nav class="navbar navbar-default">
+                <h2  class="navbar-header" style=" width:100%; text-align: center;">Stamp Duty Certificate</h2>
+                </nav>
             <div class="clearfix"></div>
         </div>
 
@@ -67,7 +69,7 @@
                         <table cellspacing='0' style='width:100%;table-layout:fixed;font-size:12px;font-family:Century Gothic'>
                             <tr style='font-weight:bold;font-style:verdana'>
                                 <td valign='top' style="text-transform: uppercase;">
-                                    <h6 style="font-size: 13px; font-weight: bold; text-align:left;">Certificate NO: 200160000294  </h6>
+                                    <h6 style="font-size: 13px; font-weight: bold; text-align:left;">Certificate NO: {{ $stampDutyInvoice->certificate_no }}  </h6>
                                 </td>
                                 <td align='center'><img src= "{{ asset('uploads/statelogo.png') }}" style='height:100px;width:105px;' /></td>
    
@@ -79,15 +81,15 @@
                             </tr>
                         </table>
 
-                    <p class="fieldvalues" style="position: absolute;top: 235px;left: 80px; word-wrap: break-word; text-align: left; width: 770px; font-size:16px; ">This is to certify that this Instrument was duly stamped by the Oyo State Government on the 5th July, 2020</p>
+                    <p class="fieldvalues text-center" style="position: absolute;top: 235px;left: 80px; word-wrap: break-word; text-align: left; width: 770px; font-size:16px; ">This is to certify that this Instrument was duly stamped by the Kaduna State Government on the {{ \Carbon\Carbon::today()->isoFormat('MMMM Do YYYY')}}</p>
                     <p style="position: absolute;top: 285px;left: 80px; font-size:15px;"><b>DETAILS:</b></p>
                     <p style="position: absolute;top: 295px;left: 80px; border-bottom:1px solid #000;width:780px;">&nbsp;</p>
-                    <p style="position: absolute;top: 330px;left: 80px;"><b>ISSUED TO:</b> <span class="rowvalues">BEBETO >> BOLARINWA & CO.</span></p>
-                    <p style="position: absolute;top: 330px;right: 80px;"><b>REFERENCE No.:</b> <span class="rowvalues">OYO20071616</span></p>
-                    <p style="position: absolute;top:365px; left: 80px;"><b>INSTRUMENT TYPE:</b> <span class="rowvalues">PROTEST OF WILL</span></p>
-                    <p style="position: absolute;top:395px; left: 80px; word-wrap: break-word; text-align: left; width: 750px;"><b>INSTRUMENT DESCRIPTION:</b> <span class="rowvalues">PROTEST OF WILL TRANSACTION BETWEEN BEBETO AND BOLARINWA & CO.</span></p>
-                    <p style="position: absolute;top: 445px;left: 80px;"><b>TRANSACTION DATE:</b> <span class="rowvalues"> SAT 09TH MAY, 2020</span></p>
-                    <p style="position: absolute;top: 475px; left: 80px; word-wrap: break-word; text-align: left; width: 750px;"><b>AMOUNT PAID:</b> <span class="rowvalues"><span style='color:#000'>&#x20A6;</span> 500.00</span></p>
+                    <p style="position: absolute;top: 330px;left: 80px;"><b>ISSUED TO:</b> <span class="rowvalues">{{ strtoupper($stampDutyInvoice->party_a_name) }} >> {{ strtoupper($stampDutyInvoice->party_b_name) }}</span></p>
+                    <p style="position: absolute;top: 330px;right: 80px;"><b>REFERENCE No.:</b> <span class="rowvalues">{{ $stampDutyInvoice->reference_no }}</span></p>
+                    <p style="position: absolute;top:365px; left: 80px;"><b>INSTRUMENT TYPE:</b> <span class="rowvalues">{{ strtoupper($stampDutyDetails->name) }}</span></p>
+                    <p style="position: absolute;top:395px; left: 80px; word-wrap: break-word; text-align: left; width: 750px;"><b>INSTRUMENT DESCRIPTION:</b> <span class="rowvalues">{{ strtoupper($stampDutyDetails->name) }} TRANSACTION BETWEEN {{ strtoupper($stampDutyInvoice->party_a_name) }} AND {{ strtoupper($stampDutyInvoice->party_b_name) }}</span></p>
+                    <p style="position: absolute;top: 445px;left: 80px;"><b>TRANSACTION DATE:</b> <span class="rowvalues"> {{ \Carbon\Carbon::parse($stampDutyInvoice->created_at , 'UTC')->isoFormat('MMMM Do YYYY')}}</span></p>
+                    <p style="position: absolute;top: 475px; left: 80px; word-wrap: break-word; text-align: left; width: 750px;"><b>AMOUNT PAID:</b> <span class="rowvalues"><span style='color:#000'>&#x20A6;</span> {{ number_format($stampDutyAmount) }}</span></p>
                     <div class="fieldvalues" id="boardsign" style="position: absolute; top: 485px; left: 80px; padding-left:0px; color:#000; font-weight:18px; text-transform:uppercase; width:400px;  text-align:center;">
                         <img src="#" style="height:80px;width:auto;display:block; margin:0 auto; ">
                         <span style="font-weight: bolder;">__________________________________</span>
@@ -100,13 +102,18 @@
                 </div>
                 <br/>
                 
-                <form id="freshform" style="display: inline-block;" method="post">
+                <div class="container">
+                <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
+                    <button type="button" class="btn btn-success align-content-center" onclick="window.print();return false;">Print</button>
+                </div>
+
+                {{-- <form id="freshform" style="display: inline-block;" method="post">
                     <input type="hidden" name="assmnt_no" value="200160000020"  />
                     <button type="button" class="btn btn-success btn-md" onclick='printCert();' style='cursor:pointer;margin: 0 auto; width:200px;' id="btnPrnt">
                     PRINT
                     </button>
                     <a href="" role="button" class="btn btn-danger btn-md">BACK</a>
-                </form>
+                </form> --}}
  
     </body>
 </html>
