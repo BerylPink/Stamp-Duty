@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,8 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
-    <title>Stamp Duty Invoice</title>
+    <title>Stamp Duty Invoice</title> --}}
     
+    @extends('layouts.new-layout')
+    @section('title', 'Invoice')
+    @section('content')
+
     <style type="text/css">
       #loaderdiv {
         width: 100%;
@@ -60,8 +64,11 @@
         border:none;
       }
     </style>
-  </head>
-  <body class="nav-md" style="border:none;"> 
+  {{-- </head>
+  <body class="nav-md" style="border:none;">  --}}
+
+  
+    <div class="whole-wrap" style="margin-top: 180px">
     <div class="container">
         <div class="row" style="border:none;">
           <div class="col-md-12 col-sm-12 col-xs-12" style="border:none;">
@@ -187,13 +194,17 @@
               
             </div>
         </div>
-        <div class="container">
+        {{-- <div class="container">
         <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
           <button type="button" class="btn btn-success align-content-center" onclick="window.print();return false;">Print</button>
-        </div>
+        </div> --}}
     </div>
-  </body>
+  </div>
+
+  <br>
+  {{-- </body>
   </html>
-     
+      --}}
   
+    @endsection
   

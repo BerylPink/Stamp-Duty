@@ -26,7 +26,7 @@ Route::post('/verify-credentials',                  'Auth\LoginController@verify
 // Route::get('/auth-check',                           'AuthCheckController@redirectAfterAuth')->name('auth.check');
 Route::post('/create-account',                      'RegisterController@store')->name('create.user');
 
-Route::resource('/assessments',                      'AssessmentController');
+Route::resource('/assessments',                     'AssessmentController');
 
 Route::resource('/individual-account',              'IndividualAccountController');
 
@@ -38,8 +38,8 @@ Route::resource('/verification',                    'VerificationController');
 
 Route::resource('/stamp-duty-history',              'StampDutyHistoryController');
 
-Route::get('contact', 'ContactController@show')->name('contact');
-Route::post('contact', 'ContactController@mail')->name('contact');
+Route::get('contact-us', 'ContactController@show')->name('contact-us');
+Route::post('contact', 'ContactController@mail');
 
 Route::get('/stamp-duty-certificate/{id}',          'StampDutyHistoryController@edit')->name('certificate');
 

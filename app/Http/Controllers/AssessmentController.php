@@ -25,7 +25,8 @@ class AssessmentController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            return redirect()->route('assessments.index');
+            return redirect()->route('transac-individual.index')
+            ->with('success', 'Welcome! '.Auth::user()->firstname.' '.Auth::user()->lastname);
         } else{
             return view('home');
         }

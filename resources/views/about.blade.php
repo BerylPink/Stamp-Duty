@@ -1,7 +1,9 @@
-@extends('layouts.mainlayout')
+{{-- @extends('layouts.mainlayout') --}}
+@extends('layouts.new-layout')
+@section('title', 'About')
 @section('content')
     
-    <section class="hero-section">
+    {{-- <section class="hero-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -20,11 +22,11 @@
             <div class="hs-item set-bg" data-setbg="{{ asset('assets/img/hero/hero-2.jpg') }}"></div>
             <div class="hs-item set-bg" data-setbg="{{ asset('assets/img/hero/hero-3.jpg') }}"></div>
         </div>
-    </section>
+    </section> --}}
      
      
      <!-- Breadcrumb Section Begin -->
-     <div class="breadcrumb-section mt-5 mb-5">
+     {{-- <div class="breadcrumb-section mt-5 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -37,11 +39,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Breadcrumb Section End -->
     
     <!-- About Us Page Section Begin -->
-    <section class="aboutus-page-section spad">
+    {{-- <section class="aboutus-page-section spad">
         <div class="container">
             <div class="about-page-text">
                 <div class="row">
@@ -98,32 +100,57 @@
             </div>
             <div class="about-page-services">
                 <div class="row">
-                    {{-- <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p1.jpg">
-                            <div class="api-text">
-                                <h3>Restaurants Services</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p2.jpg">
-                            <div class="api-text">
-                                <h3>Travel & Camping</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="ap-service-item set-bg" data-setbg="img/about/about-p3.jpg">
-                            <div class="api-text">
-                                <h3>Event & Party</h3>
-                            </div>
-                        </div>
-                    </div> --}}
+                
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- About Us Page Section End -->
 
     
+    <section class="banner-area relative" id="home">	
+        <div class="overlay overlay-bg"></div>
+        <div class="container">				
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        About Us				
+                    </h1>	
+                    <p class="text-white link-nav"><a href="{{ route('home') }}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('about') }}"> About Us</a></p>
+                </div>	
+            </div>
+        </div>
+    </section>
+
+    <section class="home-about-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-about-right">
+                    <h6 class="text-uppercase">Brand new app to blow your mind</h6>
+                    <h1>We’ve made a life <br>
+                    that will change you</h1>
+                    <p>
+                        <span>We are here to listen from you deliver exellence</span>
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis.
+                    </p>
+                    <a class="primary-btn" href="#">Get Started Now</a>
+                </div>
+
+                <div class="col-lg-6 home-about-right">
+                    <h6 class="text-uppercase">Brand new app to blow your mind</h6>
+                    <h1>We’ve made a life <br>
+                    that will change you</h1>
+                    <p>
+                        <span>We are here to listen from you deliver exellence</span>
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis.
+                    </p>
+                    <a class="primary-btn" href="#">Get Started Now</a>
+                </div>
+            </div>
+        </div>	
+    </section>
 @endsection

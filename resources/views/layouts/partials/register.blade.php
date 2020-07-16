@@ -1,13 +1,15 @@
-<div class="modal fade " id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="registerModal">{{ __('Register') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
+
+            <div class="modal in fade" style="margin-top: 120px;" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-bold" id="loginModal">{{ __('Register') }}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+            
+            
             <div class="modal-body modal-xl">
             <form method="POST" id="registerForm" action="{{ route('create.user') }}">
                     @csrf
@@ -15,7 +17,7 @@
                         <div class="col-md-4">
                             <label class="pull-left">{{ __('First Name') }}</label><span
                                 style="color:red; font-size:25px; margin-bottom:-10px" class="pull-left">*</span>
-                            <input id="firstname" name="firstname" placeholder="First Name" type="text"
+                            <input id="firstname" name="firstname" type="text"
                                 class="form-control @error('firstname') is-invalid @enderror"
                                 value="{{ old('firstname') }}" />
 
@@ -29,7 +31,7 @@
                         <div class="col-md-4">
                             <label class="pull-left">{{ __('Last Name') }}</label><span
                                 style="color:red; font-size:25px; margin-bottom:-10px" class="pull-left">*</span>
-                            <input id="lastname" name="lastname" placeholder="Last Name" type="text"
+                            <input id="lastname" name="lastname" type="text"
                                 class="form-control @error('lastname') is-invalid @enderror"
                                 value="{{ old('lastname') }}" />
 
@@ -43,7 +45,7 @@
                         <div class="col-md-4">
                             <label class="pull-left">{{ __('Phone Number') }}</label><span
                                 style="color:red; font-size:25px; margin-bottom:-10px" class="pull-left">*</span>
-                            <input id="phone_no" name="phone_no" placeholder="Phone Number" type="tel"
+                            <input id="phone_no" name="phone_no"  type="tel"
                                 class="form-control" required="true" value="{{ old('phone_no') }}" maxlength="11" />
 
                             @error('phone_no')
@@ -59,7 +61,7 @@
                         <div class="col-md-4">
                             <label class="pull-left">{{ __('E-Mail Address') }}</label> <span
                                 style="color:red; font-size:25px; margin-bottom:-10px" class="pull-left">*</span>
-                            <input id="email" name="email" placeholder="E-Mail" type="email"
+                            <input id="email" name="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" />
 
                             @error('email')
@@ -73,8 +75,7 @@
                             <label class="pull-left">{{ __('Password') }}</label><span
                                 style="color:red; font-size:25px; margin-bottom:-10px" class="pull-left">*</span>
 
-                            <input id="password" name="password" minlength="5" placeholder="Password"
-                                type="password" class="form-control @error('password')is-invalid @enderror">
+                            <input id="password" name="password" minlength="5" type="password" class="form-control @error('password')is-invalid @enderror">
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -87,8 +88,7 @@
                         <div class="col-md-4">
                             <label class="pull-left">{{ __('Confirm Password') }}</label><span
                                 style="color:red; font-size:25px; margin-bottom:-10px" class="pull-left">*</span>
-                            <input id="confirm_password" name="confirm_password" minlength="5"
-                                placeholder="Confirm Password" type="password"
+                            <input id="confirm_password" name="confirm_password" minlength="5" type="password"
                                 class="form-control @error('confirm_password')is-invalid @enderror" />
                             @error('confirm_password')
                             <span class="invalid-feedback" role="alert">
@@ -117,7 +117,7 @@
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label class="pull-left">Gender</label>
-                            <select id="gender" name="gender" class="@error('gender') is-invalid @enderror" />
+                            <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror" />
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -132,7 +132,7 @@
 
                         <div class="col-md-6">
                             <label class="pull-left">Local Government</label>
-                            <select id="tbl_lga_id" name="tbl_lga_id" class="@error('tbl_lga_id') is-invalid @enderror" />
+                            <select id="tbl_lga_id" name="tbl_lga_id" class="form-control @error('tbl_lga_id') is-invalid @enderror" />
                                 <option value="">Select L.G.A</option>
                             @foreach ($tbl_lga as $lga)
                                 <option value="{{ $lga->id }}">{{ $lga->descrp }}</option>
