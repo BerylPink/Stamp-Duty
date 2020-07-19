@@ -28,7 +28,7 @@
         <div class="container">
             <div class="section-top-border">
                 <h3 class="mb-30">
-                    <a href="/transac-individual">Transaction History </a></h3>
+                    <a style ="color:black; text-align:center" href="/transac-individual">These are your existing Stamp Duty... Click here for another Assessment...</a></h3>
                 <div class="progress-table-wrap">
                     @include('layouts.partials._messages')
                     <div class="progress-table">
@@ -42,10 +42,10 @@
                                 <div class="serial">{{ ++$i }}</div>
                                 <div class="country">{{ \Carbon\Carbon::parse($stampDutyHistory->created_at , 'UTC')->isoFormat('LLLL') }}</div>
                                 <div class="visit">
-                                    <a class="nav-link" style="cursor: pointer" href="{{ route('invoice', $stampDutyHistory->id) }}">
+                                    <a style ="color:red;" class="nav-link" style="cursor: pointer" href="{{ route('invoice', $stampDutyHistory->id) }}">
                                         Print Invoice
                                     </a>
-                                    <a class="nav-link" style="cursor: pointer" href="{{ route('certificate', $stampDutyHistory->id) }}">
+                                    <a style ="color:red;" class="nav-link" style="cursor: pointer" href="{{ route('certificate', $stampDutyHistory->id) }}">
                                         Print Certificate
                                     </a>
                                 </div>

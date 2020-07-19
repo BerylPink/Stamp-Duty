@@ -27,8 +27,8 @@
                             <span class="lnr lnr-home"></span>
                         </div>
                         <div class="contact-details">
-                            <h5>Dhaka, Bangladesh</h5>
-                            <p>56/8, West Panthapath</p>
+                            <h5>Address:</h5>
+                            <p>1st floor obasanjo house, yakubu gowon way, kaduna</p>
                         </div>
                     </div>
                     <div class="single-contact-address d-flex flex-row">
@@ -36,8 +36,8 @@
                             <span class="lnr lnr-phone-handset"></span>
                         </div>
                         <div class="contact-details">
-                            <h5>00 (880) 9865 562</h5>
-                            <p>Mon to Fri 9am to 6 pm</p>
+                            <h5>Phone:</h5>
+                            <p>(12) 345 67890</p>
                         </div>
                     </div>
                     <div class="single-contact-address d-flex flex-row">
@@ -45,8 +45,8 @@
                             <span class="lnr lnr-envelope"></span>
                         </div>
                         <div class="contact-details">
-                            <h5>support@codethemes.com</h5>
-                            <p>Send us your query anytime!</p>
+                            <h5>Email:</h5>
+                            <p>kadris.info@gmail.com</p>
                         </div>
                     </div>														
                 </div>

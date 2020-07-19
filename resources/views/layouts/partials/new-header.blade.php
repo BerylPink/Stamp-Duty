@@ -1,26 +1,32 @@
 <header id="header" class="">
     <div class="container">
         <div class="row header-top align-items-center">
-            <div class="col-lg-4 col-sm-4 menu-top-left">
-                <a href="mailto:info@horseclub.com"><span class="lnr lnr-location"></span></a>
+            <div class="col-lg-4 col-sm-4 menu-top-left">  
                 <a class="tel" href="mailto:info@horseclub.com">kadris.info@gmail.com</a>
             </div>
             <div class="col-lg-4 menu-top-middle justify-content-center d-flex">
-                <a href="index.html">
+                <!-- <a href="index.html">
                     <img class="img-fluid" src="img/logo.png" alt="">	
-                </a>			    			
+                </a>			    			 -->
             </div>
             <div class="col-lg-4 col-sm-4 menu-top-right">
                 <a class="tel" href="tel:+880 123 12 658 439">(+234) 000 000 0000</a>
-                <a href="tel:+880 123 12 658 439"><span class="lnr lnr-phone-handset"></span></a>
             </div>
         </div>
     </div>	
         <hr>
     <div class="container">	
-        <div class="row align-items-center justify-content-center d-flex">
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="logo">
+            <a href="#">
+              <img src="{{ asset('uploads/statelogo.png') }}" alt="Kaduna State Logo" width="50" height="auto">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8 align-items-center justify-content-center d-flex">
           <nav id="nav-menu-container">
-            <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+            <ul class="nav-menu sf-js-enabled sf-arrows mr-auto" style="touch-action: pan-y;">
               <li class= "{{ Route::currentRouteNamed('home') ? 'menu-active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
               <li class="{{ Route::currentRouteNamed('about') ? 'menu-active' : '' }}"><a href="{{ route('about') }}">About</a></li>
               <li class="{{ Route::currentRouteNamed('transac-individual.index', 'assessments.show') ? 'menu-active' : '' }}"><a href="{{ url('transac-individual') }}">Services</a></li>

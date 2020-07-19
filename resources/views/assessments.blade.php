@@ -146,13 +146,13 @@
 
                                             <div class="form-group col-lg-3 ">
                                                 <label>Instrument Type</label>
-                                                <input  class="form-control" id="instrument" type="text" placeholder="Admission Fee" disabled />
+                                                <input  class="form-control" id="instrument" type="text" placeholder="{{ $stampDutyDetails->name }}" disabled />
                                 
                                             </div>
 
                                             <div class="form-group col-lg-3 ">
                                                 <label>Consideration Amount and Value</label>
-                                                <input id="amount" name="amount" placeholder="Admission fee amount" type="text" class="form-control" disabled />
+                                                <input id="amount" name="amount" placeholder="{{ $stampDutyDetails->rate }}" type="text" class="form-control" disabled />
                                             
                                             </div> 
 

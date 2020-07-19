@@ -9,6 +9,7 @@ use App\PartyA;
 use App\PartyB;
 use App\InstrumentDetails;
 use App\StampDutyHistory;
+use App\TransacIndividual;
 
 class AssessmentController extends Controller
 {
@@ -187,7 +188,12 @@ class AssessmentController extends Controller
         if(Auth::check()){
             $stampDutyId = $id;
 
-            return view('assessments', compact('stampDutyId'));
+            $stampDutyDetails = TransacIndividual::select('id', 'name', 'rate', 'extra_copy')
+            ->where('id', $stampDutyId)->first();
+
+            // return $stampDutyDetails;
+
+            return view('assessments', compact('stampDutyId', 'stampDutyDetails'));
 
         }else{
             return back()->with('error', 'Please login to access this service.');
