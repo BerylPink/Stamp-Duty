@@ -28,7 +28,7 @@
                 <div class="col-lg-6 about-video-left">
                     <h6 class="text-uppercase">All about Stamp duty with Kaduna</h6>
                     <h1>
-                        We’ve made Staping Easy 
+                        We’ve made Stamping Easy 
                     </h1>
                     <p>
                         In 1985 the Kaduna State Government enacted an Edict known as
@@ -38,7 +38,7 @@
                     </p>
                     <p>The Director-General preside the meeting of the Management which
                         comprises all the Head of Department.</p>
-                    <a class="primary-btn" href="#">Get Started Now</a>
+                    <a class="primary-btn" data-toggle="modal" data-target="#registerModal">Get Started Now</a>
                 </div>
                 <div class="col-lg-6  justify-content-center align-items-center d-flex">
                     <img class="img-fluid mx-auto" src="{{ asset('uploads/zaria-kaduna.jpg') }}" alt=""></a>

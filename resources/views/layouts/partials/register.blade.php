@@ -1,5 +1,5 @@
 
-            <div class="modal in fade" style="margin-top: 120px;" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+            <div class="modal in fade" style="margin-top: 70px;" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header text-center">

@@ -103,7 +103,7 @@
                 <br/>
                 
                 <div class="container">
-                <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
+                <a href="javascript:history.go(-1);" class="btn btn-danger">Back</a>
                     <button type="button" class="btn btn-success align-content-center" onclick="window.print();return false;">Print</button>
                 </div>
 

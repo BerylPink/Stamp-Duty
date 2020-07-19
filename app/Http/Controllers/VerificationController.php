@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 use App\Verification;
+use App\StampDutyHistory;
+use App\TransacIndividual;
 
 class VerificationController extends Controller
 {
@@ -44,7 +46,25 @@ class VerificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $stampDutyInvoice = StampDutyHistory::findOrFail($request->input('certificate_no'));
+        $stampDutyInvoice = StampDutyHistory::where('certificate_no', $request->input('certificate_no'))->first();
+
+        // return $stampDutyInvoice;
+
+        if($stampDutyInvoice){
+
+            $stampDutyDetails =  TransacIndividual::select('id','name', 'rate', 'extra_copy')
+            ->where('id', $stampDutyInvoice->tax_stamp_duty_id)->first();
+
+            $stampDutyAmount = ($stampDutyDetails->rate) * ($stampDutyDetails->extra_copy);
+
+            $data = compact('stampDutyInvoice', 'stampDutyDetails', 'stampDutyAmount');
+
+            return view('certificate', $data);
+
+        }else{
+            return back()->with('error','Certificate Number does not exist. Verifiy you entered the correct certificate number.');
+        }
     }
 
     /**
@@ -55,16 +75,19 @@ class VerificationController extends Controller
      */
     public function show($id)
     {
-        $userExists = Verification::findOrFail($id);
+        // $userExists = Verification::findOrFail($id);
 
-            $transaction = DB::table('tbl_tax_stamp_duty')
-            ->select('assess_no ', 'payera_name', 'payerb_name', 'tbl_duty_instruments_name', 'paid_amount')
-            ->where('tbl_tax_stamp_duty.id', $id)->first();
+        // $transaction = DB::table('tbl_tax_stamp_duty')
+        // ->select('assess_no ', 'payera_name', 'payerb_name', 'tbl_duty_instruments_name', 'paid_amount')
+        // ->where('tbl_tax_stamp_duty.id', $id)->first();
 
-            $data = compact('verification');
-            // return response()->json($data);
+        // $data = compact('verification');
+        // // return response()->json($data);
 
-            return view('verification', $data);
+        // return view('verification', $data);
+
+        
+        
     }
 
     /**

@@ -37,7 +37,7 @@
                             <div class="country">Transaction Date</div>
                             <div class="visit">Actions</div>
                         </div>
-                        @foreach($stampDutyHistories as $stampDutyHistory)
+                        {{-- @foreach($stampDutyHistories as $stampDutyHistory) --}}
                             <div class="table-row">
                                 <div class="serial">{{ ++$i }}</div>
                                 <div class="country">{{ \Carbon\Carbon::parse($stampDutyHistory->created_at , 'UTC')->isoFormat('LLLL') }}</div>
@@ -50,12 +50,12 @@
                                     </a>
                                 </div>
                             </div>
-                        @endforeach
+                        {{-- @endforeach --}}
                     </div>
                 </div>
 
             </div>
-            <span class="d-flex justify-content-end" style="margin-bottom: 11px !important;">{{ $stampDutyHistories->links() }}</span> <br>
+            {{-- <span class="d-flex justify-content-end" style="margin-bottom: 11px !important;">{{ $stampDutyHistories->links() }}</span> <br> --}}
         </div>
     </div>
 

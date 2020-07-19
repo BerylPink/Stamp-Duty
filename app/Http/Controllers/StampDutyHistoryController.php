@@ -27,10 +27,10 @@ class StampDutyHistoryController extends Controller
      */
     public function index()
     {
-        $stampDutyHistories = StampDutyHistory::select('id', 'created_at')
-        ->where('users_id', Auth::id())->orderBy('created_at', 'DESC')->paginate(4);
+        $stampDutyHistory = StampDutyHistory::select('id', 'created_at')
+        ->where('users_id', Auth::id())->latest('created_at')->first();
 
-        $data = compact('stampDutyHistories');
+        $data = compact('stampDutyHistory');
 
         return view('stamp-duty-history', $data)
         ->with('i', (request()->input('page', 1) -1)*4); ;

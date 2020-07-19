@@ -21,14 +21,16 @@
     <div class="whole-wrap">
         <div class="container">
             <div class="section-top-border">
+            @include('layouts.partials._messages')
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
                         <h3 class="mb-30">Stamp Duty Certificate Number</h3>
-                        <form action="#">
+                        <form method="POST" action="{{ route('verification.store') }}">
+                            @csrf
                             <div class="mt-10">
-                                <input type="text" name="first_name" placeholder="Stamp Duty Certificate Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Stamp Duty Certificate Number'" required="" class="single-input">
+                                <input type="text" name="certificate_no" placeholder="Stamp Duty Certificate Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Stamp Duty Certificate Number'" required autocomplete="off" maxlength="10" class="single-input">
                             </div><br>
-                            <a href="#" class="genric-btn primary">Submit</a>
+                            <button type="submit" class="genric-btn primary">Submit</button>
                         </form>
                     </div>
                     

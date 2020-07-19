@@ -1,4 +1,4 @@
-<div class="modal in fade" style="margin-top: 150px;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+<div class="modal in fade" style="margin-top: 120px;" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
