@@ -31,7 +31,7 @@
               <li class="{{ Route::currentRouteNamed('about') ? 'menu-active' : '' }}"><a href="{{ route('about') }}">About</a></li>
               <li class="{{ Route::currentRouteNamed('transac-individual.index', 'assessments.show') ? 'menu-active' : '' }}"><a href="{{ url('transac-individual') }}">Services</a></li>
               <li class="{{ Route::currentRouteNamed('verification.index') ? 'menu-active' : '' }}"><a href="{{ url('verification') }}">Verification</a></li>
-              <li class="{{ Route::currentRouteNamed('contact-us') ? 'menu-active' : '' }}"><a href="{{ route('contact-us') }}">Contact</a></li>
+              <li class="{{ Route::currentRouteNamed('contact') ? 'menu-active' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
               @auth
               <li class="menu-has-children {{ Route::currentRouteNamed('stamp-duty-history.index') ? 'menu-active' : '' }}"><a class="sf-with-ul">More</a>
                 <ul style="display: none;"> 

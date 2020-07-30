@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Mail;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\ContactRequest;
-
-use Mail;
-use App\Mail\NewContactRequest;
-
-class ContactController extends Controller
+class ContactMessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +24,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view ('contact');
     }
 
     /**
@@ -39,7 +35,22 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        Mail::send('emails.contact-message', [
+            'message' => $request->message
+        ], function ($mail) use($request) {
+            $mail->from ($request->email, $request->name);
+
+            $mail->to('ntimiadiel@gmail.com')->subject('Contact Message');
+        });
+
+        return redirect()->back()->with('flash_message', 'Thank you for contacting us');
     }
 
     /**
@@ -48,18 +59,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('contact');
-    }
-
-    Public function mail(ContactRequest $request)
-    {
-        // dd($request);
-        
-        mail::to('ntimiadiel@gmail.com')->send(new NewContactRequest($request));
-
-        return back()->with('status', 'Your message has been recieved');
+        //
     }
 
     /**

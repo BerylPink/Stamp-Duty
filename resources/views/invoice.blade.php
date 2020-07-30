@@ -162,7 +162,7 @@
                                 <tr>
                                   <td style="font-size: 12px; text-transform:uppercase;" align='center' colspan="2">
                                     <div style="position:relative; text-align:center; width:500px;margin-top:10px;">
-                                      <img src="#" style="height:80px;width:auto;">
+                                      <img src="{{ asset('uploads/duty_comm_sign.png') }}" style="height:80px;width:auto;">
                                       <br/>
                                       <span>_________________________________</span>
                                       <br/>
@@ -194,17 +194,27 @@
               
             </div>
         </div>
-        {{-- <div class="container">
-        <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
-          <button type="button" class="btn btn-success align-content-center" onclick="window.print();return false;">Print</button>
-        </div> --}}
+        <div class="container">
+          <form name="form1" action="https://sandbox.interswitchng.com/webpay/pay" method="post">
+
+            <input name="product_id" type="hidden" value="6204" />
+            <input name="pay_item_id" type="hidden" value="103" />
+            <input name="amount" type="hidden" value="50000" />
+            <input name="currency" type="hidden" value="566" />
+            <input name="site_redirect_url" type="hidden" value ="http://abc.com/getresponse" />
+            <input name="txn_ref" type="hidden" value="AB-12385_TT" />
+            <input name="cust_id" type="hidden" value="AD99" >
+            <input name="hash" type="hidden" value="402D39A072B15B557D0E04E74D6F896EAA98EDFF5B81726C52F6A73C6CC729075C526CCF56EB1ADA1E 336BFA297D2288A069385BD4ED210F381B5F61135BBF0D" />
+
+
+            <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
+            <button type="button" class="btn btn-success align-content-center" >Pay Now</button>
+          </form>
+        </div>
     </div>
   </div>
 
   <br>
-  {{-- </body>
-  </html>
-      --}}
   
     @endsection
   

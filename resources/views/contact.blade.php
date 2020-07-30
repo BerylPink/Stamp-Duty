@@ -12,7 +12,7 @@
                     <h1 class="text-white">
                         Contact Us
                     </h1>	
-                    <p class="text-white link-nav"><a href="{{ route('home') }}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('contact-us') }}"> Contact Us</a></p>
+                    <p class="text-white link-nav"><a href="{{ route('home') }}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="{{ route('contact') }}"> Contact Us</a></p>
                 </div>											
             </div>
         </div>
@@ -51,6 +51,11 @@
                     </div>														
                 </div>
                 <div class="col-lg-8">
+
+                    @if (Session::has('flash_message'))
+                        <div class="alart alert-success">{{ Session::get('flash_message') }}</div>
+                    @endif
+
                     <form class="form-area " id="myForm" action="mail.php" method="post">
                         <div class="row">	
                             <div class="col-lg-6 form-group">
@@ -106,7 +111,7 @@
                     </div>
                 @else
 
-                <form action="contact" class="contact-form" method="post">
+                <form action="{{ route('contact.store') }}" class="contact-form" method="post">
 
                    {{ @csrf_field () }}
 

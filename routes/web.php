@@ -38,9 +38,21 @@ Route::resource('/verification',                    'VerificationController');
 
 Route::resource('/stamp-duty-history',              'StampDutyHistoryController');
 
-Route::get('contact-us', 'ContactController@show')->name('contact-us');
-Route::post('contact', 'ContactController@mail');
+// Route::get('contact-us', 'ContactController@show')->name('contact-us');
+// Route::post('contact', 'ContactController@mail');
 
 Route::get('/stamp-duty-certificate/{id}',          'StampDutyHistoryController@edit')->name('certificate');
 
 Route::get('/stamp-duty-invoice/{id}',              'StampDutyHistoryController@show')->name('invoice');
+
+
+Route:: get('contact', [
+    'uses' => 'ContactMessageController@create'
+])->name('contact');
+
+Route:: post('contact', [
+    'uses' => 'ContactMessageController@store'
+])->name('contact.store');
+
+
+Route::view('webpay',                                    'frontend/webpay')->name('webpay');
