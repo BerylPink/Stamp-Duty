@@ -52,9 +52,9 @@
               @endauth
 
               @if (Route::currentRouteNamed('invoice'))
-                <li class="menu-has-children {{ Route::currentRouteNamed('invoice', 'certificate') ? 'menu-active' : '' }}""><a class="sf-with-ul">Print</a>
+                <li class="menu-has-children {{ Route::currentRouteNamed('invoice') ? 'menu-active' : '' }}"><a class="sf-with-ul">Go Back</a>
                   <ul style="display: none;">
-                    <li><a style="cursor: pointer" onclick="window.print();return false;">Print</a>
+                    <!-- <li><a type="submit" style="cursor: pointer" value="Pay Now">Pay Now</a> -->
                     <li><a href="{{ url('/stamp-duty-history') }}">Go Back</a>
                   </ul>
                 </li>

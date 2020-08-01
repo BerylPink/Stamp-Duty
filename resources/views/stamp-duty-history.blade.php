@@ -43,11 +43,11 @@
                                 <div class="country">{{ \Carbon\Carbon::parse($stampDutyHistory->created_at , 'UTC')->isoFormat('LLLL') }}</div>
                                 <div class="visit">
                                     <a style ="color:red;" class="nav-link" style="cursor: pointer" href="{{ route('invoice', $stampDutyHistory->id) }}">
-                                        Print Invoice
+                                        Invoice
                                     </a>
-                                    <a style ="color:red;" class="nav-link" style="cursor: pointer" href="{{ route('certificate', $stampDutyHistory->id) }}">
+                                    <!-- <a style ="color:red;" class="nav-link" style="cursor: pointer" href="{{ route('certificate', $stampDutyHistory->id) }}">
                                         Print Certificate
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                         {{-- @endforeach --}}

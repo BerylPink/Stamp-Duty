@@ -72,7 +72,15 @@ class StampDutyHistoryController extends Controller
 
         $stampDutyAmount = ($stampDutyDetails->rate) * ($stampDutyDetails->extra_copy);
 
-        $data = compact('stampDutyInvoice', 'stampDutyDetails', 'stampDutyAmount');
+        $txn_ref = time() . rand(10*45, 100*98);
+        $pay_item_id = '103';
+        $site_redirect_url = 'https://www.edutyng.com/kadduty/app/Frontend/webpayresponse';
+        $MAC_KEY = 'E187B1191265B18338B5DEBAF9F38FEC37B170FF582D4666DAB1F098304D5EE7F3BE15540461FE92F1D40332FDBBA34579034EE2AC78B1A1B8D9A321974025C4';
+
+        $data_var = $txn_ref.'6204'.$pay_item_id.($stampDutyAmount*100).$site_redirect_url.$MAC_KEY;
+        $arr['hash'] = strtoupper(hash('sha512', $data_var));
+
+        $data = compact('stampDutyInvoice', 'stampDutyDetails', 'stampDutyAmount', 'txn_ref', 'arr', 'pay_item_id', 'site_redirect_url');
 
         return view('invoice', $data);
         

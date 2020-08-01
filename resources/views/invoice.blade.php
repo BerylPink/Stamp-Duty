@@ -83,7 +83,7 @@
                                     <table cellspacing='0' style='width:100%;table-layout:fixed;font-size:12px;font-family:Century Gothic'>
                                       <tr style='font-weight:bold;font-style:verdana'>
                                         <td valign='top' style="text-transform: uppercase;">
-                                          <h6 style="font-size: 13px; font-weight: bold; text-align:left;">Certificate NO: {{ $stampDutyInvoice->certificate_no }}  </h6>
+                                          <h6 style="font-size: 13px; font-weight: bold; text-align:left;">REFERENCE No.: {{ ($txn_ref) }}  </h6>
                                           <!-- <h6 style="font-size: 13px; font-weight: bold;">Assessed by: </h6> -->
                                         </td>
                                         <td align='center' >
@@ -187,21 +187,21 @@
         <div class="container">
           <form name="form1" action="https://sandbox.interswitchng.com/webpay/pay" method="post">
 
-            <input name = "product_id" id = "product_id" type = "hidden" />
-            <input name = "pay_item_id" id = "pay_item_id" type = "hidden" />
-            <input name = "amount" id = "amount" type = "hidden" />
+            <input name = "product_id" id = "product_id" type = "hidden" value = "6204"/>
+            <input name = "pay_item_id" id = "pay_item_id" type = "hidden" value = "{{ $pay_item_id }}" />
+            <input name = "amount" id = "amount" type = "hidden" value = "{{ ($stampDutyAmount) *100 }}"/>
             <input name = "currency" id = "currency" type = "hidden" value="566" />
-            <input name = "site_redirect_url" id = "site_redirect_url" type="hidden"/>
-            <input name = "txn_ref" id = "txn_ref" type = "hidden" />
-            <input name = "cust_id" id = "cust_id" type = "hidden" >
-            <input name = "hash" id = "hash" type = "hidden" />
-            <input name = "cust_name" id = "cust_name" type = "hidden" />
+            <input name = "site_redirect_url" id = "site_redirect_url" type="hidden" value = "{{ $site_redirect_url }}"/>
+            <input name = "txn_ref" id = "txn_ref" type = "hidden" value="{{ ($txn_ref) }}"/>
+            <input name = "cust_id" id = "cust_id" type = "hidden" value = "{{ Auth::id() }}" >
+            <input name = "hash" id = "hash" type = "hidden" value = "{{ $arr['hash'] }}" />
+            <input name = "cust_name" id = "cust_name" type = "hidden" value = "{{ Auth::user()->firstname.' '.Auth::user()->lastname }}" />
             <input name = "site_name" id = "site_name" type = "hidden" value="KADIRS -  EDUTY" />
-            <input name = "assess_no" id = "assess_no" type = "hidden" />
+            <input name = "assess_no" id = "assess_no" type = "hidden" value = "KD20071616" />
             <input name = "pending_paymnt" id = "pending_paymnt" type = "hidden" />
 
             <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
-            <button type="button" class="btn btn-success align-content-center" >Pay Now</button>
+            <input type="submit" class="btn btn-success align-content-center" value="Pay Now" /> 
           </form>
         </div>
     </div>
