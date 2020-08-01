@@ -1,14 +1,4 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
-    <title>Stamp Duty Invoice</title> --}}
-    
+ 
     @extends('layouts.new-layout')
     @section('title', 'Invoice')
     @section('content')
@@ -197,15 +187,18 @@
         <div class="container">
           <form name="form1" action="https://sandbox.interswitchng.com/webpay/pay" method="post">
 
-            <input name="product_id" type="hidden" value="6204" />
-            <input name="pay_item_id" type="hidden" value="103" />
-            <input name="amount" type="hidden" value="50000" />
-            <input name="currency" type="hidden" value="566" />
-            <input name="site_redirect_url" type="hidden" value ="http://abc.com/getresponse" />
-            <input name="txn_ref" type="hidden" value="AB-12385_TT" />
-            <input name="cust_id" type="hidden" value="AD99" >
-            <input name="hash" type="hidden" value="402D39A072B15B557D0E04E74D6F896EAA98EDFF5B81726C52F6A73C6CC729075C526CCF56EB1ADA1E 336BFA297D2288A069385BD4ED210F381B5F61135BBF0D" />
-
+            <input name = "product_id" id = "product_id" type = "hidden" />
+            <input name = "pay_item_id" id = "pay_item_id" type = "hidden" />
+            <input name = "amount" id = "amount" type = "hidden" />
+            <input name = "currency" id = "currency" type = "hidden" value="566" />
+            <input name = "site_redirect_url" id = "site_redirect_url" type="hidden"/>
+            <input name = "txn_ref" id = "txn_ref" type = "hidden" />
+            <input name = "cust_id" id = "cust_id" type = "hidden" >
+            <input name = "hash" id = "hash" type = "hidden" />
+            <input name = "cust_name" id = "cust_name" type = "hidden" />
+            <input name = "site_name" id = "site_name" type = "hidden" value="KADIRS -  EDUTY" />
+            <input name = "assess_no" id = "assess_no" type = "hidden" />
+            <input name = "pending_paymnt" id = "pending_paymnt" type = "hidden" />
 
             <a href="{{ url('/stamp-duty-history') }}" class="btn btn-danger">Back</a>
             <button type="button" class="btn btn-success align-content-center" >Pay Now</button>
